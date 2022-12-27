@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gol
+spec:
+  minReadySeconds: 5
+  replicas: 2
+  selector:
+    matchLabels:
+      app: golsvc
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%    
+  template:
+    metadata:
+      labels:
+        app: golsvc
+    spec:
+      containers:
+        - name: gol
+          image: rajreddy999/gol:1.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
