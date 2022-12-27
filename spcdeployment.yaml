@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: spc
-          image: rajreddy999/spc
+          image: rajreddy999/spc:1.0
           resources:
             limits:
               memory: "128Mi"
